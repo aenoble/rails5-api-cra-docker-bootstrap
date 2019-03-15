@@ -13,3 +13,15 @@ services:
       - "3333:3333"
     depends_on:
       - db
+
+  client:
+    build: ./client
+    volumes:
+      - ./client:/usr/src/app
+      - ./client/node_modules:/usr/src/app/node_modules
+    ports:
+      - '3334:3000'
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - api
